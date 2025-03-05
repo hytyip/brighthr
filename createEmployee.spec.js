@@ -1,5 +1,6 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
+import { EmployeesPage } from './employeesPage';
 
 const email = "leu7edsq@getnada.com";
 const password = "A1234567890-";
@@ -27,10 +28,11 @@ test('Bright HR Lite Login', async ({ page }) => {
   // Click back to lite dashboard button
   await page.getByRole( 'button', { name: 'Back to Lite dashboard' }).click();
 
+
   // Expect side bar display and employees is included
-  const employeesSidebar = page.getByTestId('sideBar').getByRole('link', { name: 'Employees' });
-  await employeesSidebar.click();
+  const employeesPage = new EmployeesPage(page);
+  await employeesPage.navigateToEmployeePage();
 
   // Expect Add employee button is visible
-  await expect(page.getByRole('button', { name: 'Add employee' })).toBeVisible();
+  await employeesPage.addEmployee();
 });
