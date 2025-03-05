@@ -1,6 +1,7 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 import { EmployeesPage } from './employeesPage';
+import { Employee } from './employee';
 
 const email = "leu7edsq@getnada.com";
 const password = "A1234567890-";
@@ -35,4 +36,9 @@ test('Bright HR Lite Login', async ({ page }) => {
 
   // Expect Add employee button is visible
   await employeesPage.addEmployee();
+
+  // Get random employee data
+  const employee1 = new Employee();
+  console.log(employee1);
+
 });

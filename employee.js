@@ -1,11 +1,8 @@
-import { faker } from '@faker-js/faker';
-import * as testNino from 'test-nino';
-
 const { faker } = require('@faker-js/faker');
 const testNino = require('test-nino');
 
-//Enum values for Rate
-const Rate = {
+ //Enum values for Rate
+ const Rate = {
     Hourly: "Hourly",
     Daily: "Daily",
     Weekly: "Weekly",
@@ -27,8 +24,7 @@ const Reason = {
     AdditionalResponsibilities: "Additional responsibilities",
     Demotion: "Demotion"
 }
-
-class Employee {
+exports.Employee = class Employee {
     constructor() {
         this.firstName = faker.person.firstName,
         this.middleName = faker.person.middleName,
@@ -57,7 +53,7 @@ class Employee {
             nationalInsuranceNumber : testNino.random(),
             passport : {
                 expiryDate : faker.date.future,
-                number : faker.number.int({ min: 100000000n }),
+                number : faker.number.bigInt({ min: 100000000n }),
                 country : faker.location.country
             },
             drivingLicence: {
@@ -68,7 +64,7 @@ class Employee {
             },
             visa : {
                 expiryDate : faker.date.future,
-                number : faker.number.int({ min: 10000000 })
+                number : faker.number.bigInt({ min: 10000000 })
             }
         },
         this.salaryDetails = {
