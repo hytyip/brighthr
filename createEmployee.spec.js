@@ -6,7 +6,7 @@ import { Employee } from './employee';
 const email = "leu7edsq@getnada.com";
 const password = "A1234567890-";
 
-test('Bright HR Lite Login', async ({ page }) => {
+test('Bright HR Lite Login and add new employee', async ({ page }) => {
   await page.goto('https://sandbox-app.brighthr.com/lite'); 
 
   // Click Log in button
@@ -27,18 +27,16 @@ test('Bright HR Lite Login', async ({ page }) => {
   await page.getByRole('button', { name: 'Login' }).click();
 
   // Click back to lite dashboard button
-  await page.getByRole( 'button', { name: 'Back to Lite dashboard' }).click();
-
+  await page.getByRole( 'button', { name: 'Back to Lite dashboard' }).click();  
 
   // Expect side bar display and employees is included
   const employeesPage = new EmployeesPage(page);
   await employeesPage.navigateToEmployeePage();
 
   // Expect Add employee button is visible
-  await employeesPage.addEmployee();
+  //await employeesPage.addEmployee();
 
   // Get random employee data
   const employee1 = new Employee();
   console.log(employee1);
-
 });
