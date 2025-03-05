@@ -1,0 +1,26 @@
+{
+  "name": "brighthr",
+  "version": "1.0.0",
+  "description": "Bright HR Lite Tech Test",
+  "main": "createEmployee.spec.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hytyip/brighthr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hytyip/brighthr/issues"
+  },
+  "homepage": "https://github.com/hytyip/brighthr#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^9.5.1",
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.9"
+  },
+  "dependencies": {
+    "test-nino": "^2.0.1"
+  }
+}
