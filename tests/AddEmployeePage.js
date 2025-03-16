@@ -72,7 +72,7 @@ exports.AddEmployeePage = class AddEmployeePage {
    }
 
    // Add a new employee
-   async addEmployeeName(employee) {
+   async addEmployee(employee) {
     await expect(this.addEmployeeButton).toBeVisible();
     await this.addEmployeeButton.click();
     
@@ -136,8 +136,12 @@ exports.AddEmployeePage = class AddEmployeePage {
     await expect(this.saveButton).toBeEnabled();
     await this.saveButton.click();
 
+    await expect(this.addAlltoBrightHRButton).toBeEnabled({timeout: 20000});
     await this.addAlltoBrightHRButton.click();
+
+    await expect(this.nextButton).toBeEnabled({timeout: 15000});
     await this.nextButton.click();
+
     await this.sendButton.click();
     await this.employeeHubButton.click();
    }

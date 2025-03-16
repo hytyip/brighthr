@@ -9,6 +9,7 @@ exports.EmployeesPage = class EmployeesPage {
     this.employeeSidebar = page.getByTestId('sideBar').getByRole('link', { name: 'Employees' });
     this.employeeHeader = page.getByRole('heading', {name: 'Employee hub'});
     this.addEmployeeButton = page.getByRole('button', { name: 'Add employee' });
+    this.tableContent = page.getByTestId('Content');
    }
 
    // Navigate to Bright HR Dashboard
@@ -18,9 +19,14 @@ exports.EmployeesPage = class EmployeesPage {
 
    // Navigate to Employee Tab
    async navigateToEmployeePage() {
-    await expect(this.employeeSidebar).toBeVisible();
+    await expect(this.employeeSidebar).toBeVisible({ timeout: 10000 });
     await this.employeeSidebar.click();
 
     await expect(this.employeeHeader).toBeVisible();
+   }
+
+   async employeeInContent(employeeName) {
+    // Verify employee name is in the table content
+    await expect(this.tableContent).toContainText(employeeName);
    }
 }

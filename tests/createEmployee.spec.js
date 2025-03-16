@@ -30,12 +30,23 @@ test('Bright HR Lite Login and add new employee', async ({ page }) => {
   // Expect side bar display and employees is included
   const employeesPage = new EmployeesPage(page);
   await employeesPage.navigateToEmployeePage();
-  
+
   // Get random employee data
   const employee = new Employee();
   console.log(employee);
 
   // Expect Add employee button is visible
   const addEmployeePage = new AddEmployeePage(page);
-  await addEmployeePage.addEmployeeName(employee);
+  await addEmployeePage.addEmployee(employee);
+
+  // Add a new employee
+  const employee2 = new Employee();
+  await addEmployeePage.addEmployee(employee2);
+
+  // Verify employee 1 and 2 are both in the table content
+  let employee1Name = employee.firstName + " " + employee.lastName;
+  let employee2Name = employee2.firstName + " " + employee2.lastName;
+  
+  await employeesPage.tableContent(employee1Name);
+  await employeesPage.tableContent(employee2Name);
 });
