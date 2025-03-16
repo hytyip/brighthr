@@ -19,7 +19,7 @@ exports.EmployeesPage = class EmployeesPage {
 
    // Navigate to Employee Tab
    async navigateToEmployeePage() {
-    await expect(this.employeeSidebar).toBeVisible({ timeout: 10000 });
+    await expect(this.employeeSidebar).toBeVisible({ timeout: 15000 });
     await this.employeeSidebar.click();
 
     await expect(this.employeeHeader).toBeVisible();

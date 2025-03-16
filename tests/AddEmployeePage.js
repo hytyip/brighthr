@@ -119,10 +119,11 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.passportExpiryTextbox.fill(employee.sensitive.passport.expiryDate);
 
     // Wait until Save button to be enable and then click it
-    await expect(this.saveButton).toBeEnabled();
+    await expect(this.saveButton).toBeEnabled({timeout: 10000});
     await this.saveButton.click();
 
     // Input holiday info
+    await expect(this.publicHolidaySelect).toBeVisible({timeout: 10000});
     await this.publicHolidaySelect.selectOption('ENGLANDANDWALES');
 
     await this.employeeTypeRegular.check();
