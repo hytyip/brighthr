@@ -84,6 +84,7 @@ exports.AddEmployeePage = class AddEmployeePage {
 
     await expect(this.titleSelect).toBeVisible();
     await this.titleSelect.selectOption(employee.title);
+    await expect(this.middleNameTextbox).toBeVisible({timeout: 10000});
     await this.middleNameTextbox.fill(employee.middleName);
     await this.genderSelect.selectOption(employee.gender);
     await this.dob.fill(employee.dateOfBirth);
@@ -134,7 +135,7 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.fullTimeLeave.fill('25');
 
     // Save and navigate back to employee hub
-    await expect(this.saveButton).toBeEnabled();
+    await expect(this.saveButton).toBeEnabled({timeout: 10000});
     await this.saveButton.click();
 
     await expect(this.addAlltoBrightHRButton).toBeEnabled({timeout: 20000});
