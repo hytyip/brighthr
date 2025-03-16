@@ -60,7 +60,7 @@ exports.AddEmployeePage = class AddEmployeePage {
     // Work details
     this.publicHolidaySelect = page.getByTestId('publicHolidaySelect');
     this.workPlaceTextbox = page.getByRole('textbox', { name: 'Place of work' });
-    this.employeeType = page.getByTestId('employee-type-radio-Regular');
+    this.employeeTypeRegular = page.getByTestId('employee-type-radio-Regular');
     this.workPatternSelect = page.getByTestId('workingPatternSelect');
     this.workHour = page.getByTestId('fullTimeEquivalentWorkingWeek.hours');
     this.entitlementDays = page.getByTestId('entitlement-unit-radio-days');
@@ -82,6 +82,7 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.lastNameTextbox.fill(employee.lastName);
     await this.page.keyboard.press('Enter');
 
+    await expect(this.titleSelect).toBeVisible();
     await this.titleSelect.selectOption(employee.title);
     await this.middleNameTextbox.fill(employee.middleName);
     await this.genderSelect.selectOption(employee.gender);
@@ -108,14 +109,6 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.accountNumberTextbox.fill(employee.accountNumber);
     await this.sortCodeTextbox.fill(employee.sortCode);
 
-    // Input Salary details 
-    await this.salaryTextbox.fill(employee.salaryDetails.salary);
-    await this.rateSelect.selectOption(employee.salaryDetails.rate);
-    await this.paymentFrequencySelect.selectOption(employee.salaryDetails.paymentFrequency);
-    await this.effectiveFromTextbox.fill(employee.salaryDetails.effectiveFrom);
-    await this.reasonSelect.selectOption(employee.salaryDetails.reason);
-    await this.payrollNumberTextbox.fill(employee.salaryDetails.payrollNumber);
-
     // Input Tax and NI
     await this.taxcodeTextbox.fill(employee.sensitive.taxCode);
     await this.niNumberTextbox.fill(employee.sensitive.nationalInsuranceNumber);
@@ -130,9 +123,12 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.saveButton.click();
 
     // Input holiday info
-    await expect(this.publicHolidaySelect).toBeVisible();
     await this.publicHolidaySelect.selectOption('ENGLANDANDWALES');
-    await this.workHour.fill('43');
+
+    await this.employeeTypeRegular.check();
+    await this.workPatternSelect.selectOption("225011");
+    await this.workHour.fill('35');
+
     await this.entitlementDays.check();
     await this.fullTimeLeave.fill('25');
 
