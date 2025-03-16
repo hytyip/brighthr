@@ -2,8 +2,9 @@
 import { test, expect } from '@playwright/test';
 import { EmployeesPage } from './employeesPage';
 import { Employee } from './employee';
+import { AddEmployeePage } from './AddEmployeePage';
 
-const email = "leu7edsq@getnada.com";
+const email = "qaTechTask100@grr.la";
 const password = "A1234567890-";
 
 test('Bright HR Lite Login and add new employee', async ({ page }) => {
@@ -26,17 +27,26 @@ test('Bright HR Lite Login and add new employee', async ({ page }) => {
   // Click Login button
   await page.getByRole('button', { name: 'Login' }).click();
 
-  // Click back to lite dashboard button
-  await page.getByRole( 'button', { name: 'Back to Lite dashboard' }).click();  
-
   // Expect side bar display and employees is included
   const employeesPage = new EmployeesPage(page);
   await employeesPage.navigateToEmployeePage();
 
-  // Expect Add employee button is visible
-  //await employeesPage.addEmployee();
-
   // Get random employee data
-  const employee1 = new Employee();
-  console.log(employee1);
+  const employee = new Employee();
+  console.log(employee);
+
+  // Expect Add employee button is visible
+  const addEmployeePage = new AddEmployeePage(page);
+  await addEmployeePage.addEmployee(employee);
+
+  // Add a new employee
+  const employee2 = new Employee();
+  await addEmployeePage.addEmployee(employee2);
+
+  // Verify employee 1 and 2 are both in the table content
+  let employee1Name = employee.firstName + " " + employee.lastName;
+  let employee2Name = employee2.firstName + " " + employee2.lastName;
+  
+  await employeesPage.tableContent(employee1Name);
+  await employeesPage.tableContent(employee2Name);
 });
