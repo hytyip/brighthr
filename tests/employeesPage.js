@@ -23,9 +23,4 @@ exports.EmployeesPage = class EmployeesPage {
 
     await expect(this.employeeHeader).toBeVisible();
    }
-
-   // Add a new employee
-   async addEmployee() {
-    await this.addEmployee.click();
-   }
 }

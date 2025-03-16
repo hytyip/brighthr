@@ -21,6 +21,8 @@
     "@types/node": "^22.13.9"
   },
   "dependencies": {
+    "brighthr": "file:",
+    "randexp": "^0.5.3",
     "test-nino": "^2.0.1"
   }
 }

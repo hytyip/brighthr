@@ -2,8 +2,9 @@
 import { test, expect } from '@playwright/test';
 import { EmployeesPage } from './employeesPage';
 import { Employee } from './employee';
+import { AddEmployeePage } from './AddEmployeePage';
 
-const email = "leu7edsq@getnada.com";
+const email = "qaTechTask100@grr.la";
 const password = "A1234567890-";
 
 test('Bright HR Lite Login and add new employee', async ({ page }) => {
@@ -26,17 +27,15 @@ test('Bright HR Lite Login and add new employee', async ({ page }) => {
   // Click Login button
   await page.getByRole('button', { name: 'Login' }).click();
 
-  // Click back to lite dashboard button
-  await page.getByRole( 'button', { name: 'Back to Lite dashboard' }).click();  
-
   // Expect side bar display and employees is included
   const employeesPage = new EmployeesPage(page);
   await employeesPage.navigateToEmployeePage();
+  
+  // Get random employee data
+  const employee = new Employee();
+  console.log(employee);
 
   // Expect Add employee button is visible
-  //await employeesPage.addEmployee();
-
-  // Get random employee data
-  const employee1 = new Employee();
-  console.log(employee1);
+  const addEmployeePage = new AddEmployeePage(page);
+  await addEmployeePage.addEmployeeName(employee);
 });
